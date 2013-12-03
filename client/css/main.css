@@ -1,5 +1,9 @@
+html, body{
+    height: 100%;
+}
 body{
 	padding-top: 55px;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {

@@ -1,7 +1,7 @@
 var get = {
 	'spec': {
 		"description" : "Get image",
-		"path" : "/image.{format}/{id}",
+		"path" : "/images.{format}/{id}",
 		"notes" : "Get image",
 		"summary" : "Get image by Id",
 		"method": "GET",
@@ -27,7 +27,7 @@ var get = {
 var list = {
 	'spec': {
 		"description" : "List images",
-		"path" : "/image.{format}",
+		"path" : "/images.{format}",
 		"notes" : "List images",
 		"summary" : "List images",
 		"method": "GET",
@@ -43,7 +43,7 @@ var list = {
 var search = {
 	'spec': {
 		"description" : "Search images",
-		"path" : "/image.{format}/search/{phrase}",
+		"path" : "/images.{format}/search/{phrase}",
 		"notes" : "Search images",
 		"summary" : "Search images",
 		"method": "GET",
@@ -69,7 +69,7 @@ var search = {
 var remove = {
 	'spec': {
 		"description" : "Remove image",
-		"path" : "/image.{format}/{id}",
+		"path" : "/images.{format}/{id}",
 		"notes" : "Remove image",
 		"summary" : "Remove image",
 		"method": "DELETE",
@@ -95,7 +95,7 @@ var remove = {
 var create = {
 	'spec': {
 		"description" : "Create image",
-		"path" : "/tag.{format}",
+		"path" : "/images.{format}",
 		"notes" : "Change tag",
 		"summary" : "Change tag",
 		"method": "POST",

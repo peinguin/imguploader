@@ -1,0 +1,4 @@
+<div class="form-group">
+  <input type="text" placeholder="Search" class="form-control">
+</div>
+<button class="btn btn-default" type="submit">Search</button>

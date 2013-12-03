@@ -6,7 +6,7 @@ exports.facebook = {
 };
 
 exports.listen = process.env.PORT || 5000;
-
-exports.db = process.env.HEROKU_POSTGRESQL_RED_URL || 'pg://lveutcjeuydedd:CUHx571cS0jr6PESlTk-Uj1oFd@localhost:5432/dchtsmvsngop0o';
+console.log(DATABASE_URL)
+exports.db = process.env.DATABASE_URL || 'pg://lveutcjeuydedd:CUHx571cS0jr6PESlTk-Uj1oFd@localhost:5432/dchtsmvsngop0o';
 
 exports.basePath = 'http://imguploader.herokuapp.com/';
