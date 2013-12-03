@@ -36,7 +36,13 @@ var list = {
 		"nickname" : "listImage"
 	},
 	'action': function (req,res) {
-		
+		Person.find({},function(err, conferences){
+			if(err){
+				res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+			}else{
+				res.send(200, JSON.stringify(conferences));
+			}
+		});
 	}
 };
 
