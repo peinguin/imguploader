@@ -36,11 +36,12 @@ var list = {
 		"nickname" : "listImage"
 	},
 	'action': function (req,res) {
-		req.db.models.images.find({},function(err, conferences){
+		req.db.models.images.find({},function(err, images){
 			if(err){
+				throw err;
 				res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
 			}else{
-				res.send(200, JSON.stringify(conferences));
+				res.send(200, JSON.stringify(images));
 			}
 		});
 	}
