@@ -2,6 +2,10 @@
 	"name": "ImgUploader",
 	"version": "0.0.1",
 	"dependencies": {
-		"express": "*"
+		"express": "*",
+		"orm": "*",
+		"pg": "*",
+		"swagger-node-express": "*",
+		"memjs": "*"
 	}
 }

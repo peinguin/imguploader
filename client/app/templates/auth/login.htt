@@ -1,0 +1,13 @@
+<form class="navbar-form navbar-right" action="<% cfg.baseUrl %>auth.json">
+  <div class="form-group">
+    <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+  </div>
+  <div class="btn-group">
+	  <button class="btn btn-success" type="submit">Sign in</button>
+	  <button class="btn btn-primary" id="facebook" type="button">Facebook</button>
+	  <button class="btn btn-info" id="register" type="button">Register</button>
+	</div>
+</form>
