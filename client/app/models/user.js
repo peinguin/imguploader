@@ -76,17 +76,15 @@ define(
 				renew_headers();
 
 				this.on('change:id', function(){
-					if(window.location.hash.match(/register/)){
+					if(
+						window.location.hash.match(/register/)
+					){
 						(new Backbone.Router).navigate("", {trigger: true, replace: true});
+					}else{
+						App.mainView.currentView.content.currentView.render();
 					}
 
 					model.showHeader();
-					if(
-						App.getMainLayout().content.currentView &&
-						App.getMainLayout().content.currentView.decision
-					){
-						App.getMainLayout().content.currentView.renderDecisionBlock();
-					}
 				});
 
 				this.on('renewHeader', function(){
@@ -117,7 +115,7 @@ define(
 							email: undefined
 						});
 						renew_headers();
-						(new Backbone.Router).navigate("", {trigger: true, replace: true})
+						App.mainView.currentView.content.currentView.render();
 					}
 				});
 			},

@@ -41,13 +41,59 @@ body{
     max-width: 480px; 
     display: block;
     margin: 10px auto;
+    position: relative;
 }
 .one-image img{
     width: 100%;
+    position: relative;
+    top:0;
+    left: 0;
 }
 .one-image .title{
-    display:block;
-    margin-bottom: 20px;
-    height: 20px; 
+    display:none;
+    font-size: 21px;
+    overflow: hidden;
     text-align: center;
+    color: #000;
+    text-shadow:0px 0px 5px #fff;
+    position: relative;
+    height: 30px;
+    overflow: hidden;
+    top:10px;
+    z-index: 1;
+    margin-bottom: -30px;
+}
+.one-image  input.title{
+    margin: 0 auto -30px;
+}
+.one-image .remove{
+    color:#fff;
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    margin-bottom: -40px;
+    background-color: #f00;
+    display: none;
+    float: right;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-weight: 900;
+    cursor: pointer;
+    top:-15px;
+    left: 15px;
+    font-size: 20px;
+}
+.one-image:hover .tags{
+    display: block;
+}
+.one-image:hover .title,
+.one-image:hover .remove,
+.one-image:hover .tags,
+
+.one-image.active .title,
+.one-image.active .remove,
+.one-image.active .tags{
+    display: block;
 }

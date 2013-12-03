@@ -7,14 +7,14 @@ define(
 		'app/views/auth/profile'
 	],
 	function(
-		MyConference,
+		App,
 		Marionette,
 		UserModel,
 		RegisterView,
 		ProfileView
 	){
 
-		MyConference.module("Auth", function(AuthModule){
+		App.module("Auth", function(AuthModule){
 
 			var User = new UserModel;
 
@@ -24,7 +24,7 @@ define(
 					if(User.isNew()){
 						var registerView = new RegisterView;
 						registerView.model = User;
-						MyConference.mainView.currentView.content.show(registerView);
+						App.mainView.currentView.content.show(registerView);
 					}else{
 						return (new Backbone.Router).navigate("", {trigger: true, replace: true});
 					}
@@ -42,7 +42,7 @@ define(
 					}else{
 						var profileView = new ProfileView;
 						profileView.model = User;
-						MyConference.mainView.currentView.content.show(profileView);
+						App.mainView.currentView.content.show(profileView);
 					}
 				}
 			});
@@ -68,6 +68,6 @@ define(
 
 		});
 
-		return MyConference.Auth;
+		return App.Auth;
 	}
 );

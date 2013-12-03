@@ -81,7 +81,10 @@ var list = {
 		var page = parseInt(req.query.page || 0);
 		var offset = page * limit
 
-		var search = req.query.search || '';console.log(search);
+		var add_conds = ['True'];
+		var params = [];
+
+		var search = req.query.search || '';
 		if(search.length > 0){
 
 			var captions = [];
@@ -97,12 +100,23 @@ var list = {
 				}
 			}
 
-			console.log(tags, captions);
+			for(var i in tags){
+				add_conds.push('tags.name LIKE ?');
+				params.push('%'+tags[i]+'%');
+			}
+
+			for(var i in captions){
+				add_conds.push('images.caption LIKE ?');
+				params.push('%'+captions[i]+'%');
+			}
 		}
+		add_conds = add_conds.join(' AND ');
+		params.push(limit);
+		params.push(offset);
 
-		//db.driver.execQuery("SELECT id, email FROM user", function (err, data) { ... })
+		var sql = "SELECT images.*, MAX(tags.id) FROM images LEFT JOIN tags ON (tags.image_id = images.id) WHERE "+add_conds+" GROUP BY images.id ORDER BY images.id desc LIMIT ? OFFSET ?";
 
-		req.db.models.images.find({},{ limit:limit,offset:offset},function(err, images){
+		req.db.driver.execQuery(sql, params, function (err, images) {
 			if(err){
 				res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
 			}else{
@@ -134,7 +148,94 @@ var remove = {
 		"nickname" : "removeImage"
 	},
 	'action': function (req,res) {
-		
+		if (!req.params.id) {
+	      throw swagger.errors.invalid('id'); }
+	    var id = parseInt(req.params.id);
+
+		req.db.models.images.get(id, function(err, image){
+			if(err){
+				res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+			}else{
+				if(image){
+					if(image.user_id == req.user){
+						image.remove(function (err) {
+							if(err){
+								res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+							}else{
+					        	res.send(200, JSON.stringify({'status':"OK"}));
+					        }
+					    });
+					}else{
+						res.send(403);
+					}					
+				}else{
+					throw swagger.errors.notFound('image');
+				}
+			}
+		});
+	}
+};
+
+var change = {
+	'spec': {
+		"description" : "Change image",
+		"path" : "/images.{format}/{id}",
+		"notes" : "Change image",
+		"summary" : "Change image",
+		"method": "PUT",
+		"params" : [
+			{
+				"paramType": "path",
+	            "name": "id",
+	            "description": "Image Id",
+	            "dataType": "int",
+	            "required": true,
+	            "allowMultiple": false
+			},
+			{
+				"paramType": "body",
+	            "name": "Image",
+	            "description": "Image (caption only)",
+	            "dataType": "Image",
+	            "required": true,
+	            "allowMultiple": false
+			}
+		],
+		"responseClass" : "string",
+		"errorResponses" : [],
+		"nickname" : "removeImage"
+	},
+	'action': function (req,res) {
+		if (!req.params.id) {
+	      throw swagger.errors.invalid('id'); }
+	    var id = parseInt(req.params.id);
+	    var caption = req.body.caption || null;
+
+	    if( !id || !caption){
+	    	res.send(401);
+	    }
+
+		req.db.models.images.get(id, function(err, image){
+			if(err){
+				res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+			}else{
+				if(image){
+					if(image.user_id == req.user){
+						image.save({caption: caption}, function (err) {
+							if(err){
+								res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+							}else{
+					        	res.send(200, JSON.stringify({'status':"OK"}));
+					        }
+					    });
+					}else{
+						res.send(403);
+					}					
+				}else{
+					throw swagger.errors.notFound('image');
+				}
+			}
+		});
 	}
 };
 
@@ -195,3 +296,4 @@ exports.get = get;
 exports.list = list;
 exports.delete = remove;
 exports.create = create;
+exports.change = change;

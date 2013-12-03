@@ -22,23 +22,21 @@ define(
 			var ImagesController = Marionette.Controller.extend(new function(){
 				return {
 					main: function(){
-						var mainView = new MainView;
-						mainView.collection = new ImagesCollection;
+						var mainView = new MainView({collection: new ImagesCollection});
 						App.mainView.currentView.content.show(mainView);
 					},
 					upload: function(id){
 						var uploadView = new UploadView({collection: new ImagesCollection});
 						App.mainView.currentView.content.show(uploadView);
 					},
-					search: function(phrase){
+					search: function(phrase){console.log(phrase)
 						var search_filed = App.mainView.currentView.header.currentView.search.$el.find('[type=text]');
 						if(search_filed.val() != phrase){
 							search_filed.val(phrase);
 						}
-
-						var mainView = new MainView;
-						mainView.collection = new ImagesCollection();
-						mainView.collection.search = phrase;
+						var collection = new ImagesCollection();
+						collection.search = phrase;
+						var mainView = new MainView({collection: collection});
 						App.mainView.currentView.content.show(mainView);
 					}
 				}
@@ -49,7 +47,9 @@ define(
 					"images": "main",
 					"": "main",
 					"upload": "upload",
-					"search/:phrase": "search"
+					"search/:phrase": "search",
+					"search": "main",
+					"search/": "main"
 				},
 				controller: new ImagesController
 			});

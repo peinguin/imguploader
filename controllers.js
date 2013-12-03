@@ -17,6 +17,7 @@ exports.init = function(swagger) {
 	swagger.addGET(images.list);
 	swagger.addDELETE(images.delete);
 	swagger.addPOST(images.create);
+	swagger.addPUT(images.change);
 
 	swagger.addDELETE(tags.delete);
 	swagger.addPOST(tags.create);

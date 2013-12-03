@@ -4,10 +4,12 @@ var restricted = {
 		/^\/user(\.format)?$/
 	],
 	'PUT':[
-		/^\/user(\.format)?$/
+		/^\/user(\.format)?$/,
+		/^\/images(\.json)?\/\d+$/
 	],
 	'DELETE': [
-		/^\/auth(\.json)?$/
+		/^\/auth(\.json)?$/,
+		/^\/images(\.json)?\/\d+$/
 	],
 	'POST': [
 		/^\/images(\.json)?$/

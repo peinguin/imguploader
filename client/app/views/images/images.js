@@ -1,28 +1,16 @@
 define(
 	[
 		'marionette',
-		'text!app/templates/images/image.htt',
+		'app/views/images/image',
 		'app/collections/images',
 		'app/views/spinner'
 	],
 	function (
 		Marionette,
-		ImageTemplate,
+		ImageView,
 		ImagesCollection,
 		SpinnerView
 	) {
-		var ImageView = Marionette.ItemView.extend({
-			template: function(model){
-				return _.template(ImageTemplate, model);
-			},
-			onRender: function () {
-				var view = this;
-
-		    	view.$el = view.$el.children();
-		    	view.setElement(view.$el);
-		    }
-		});
-
 		var ImagesView = Marionette.CollectionView.extend({
 			search: undefined,
 			itemView: ImageView,
@@ -45,7 +33,7 @@ define(
 
 					var tmpCollection = new ImagesCollection;
 
-					var data = {page:++view.page};
+					var data = {page:view.page++};
 					if(view.collection.search){
 						data.search = view.collection.search;
 					}
@@ -53,14 +41,13 @@ define(
 					tmpCollection.fetch({
 						data:data,
 						success: function(){
+							spinnerView.remove();
 							if(tmpCollection.length == 0){
 								return view.page--;
 							}
 							tmpCollection.each(function(model){
 								view.collection.add(model);
-								view.render();
 							});
-							spinnerView.remove();
 
 							view.check_need_mode_images();
 						},
