@@ -1,7 +1,18 @@
-var memjs = require('memjs');
+var memcache = require('memcache');
 var cfg = require('./config');
 
-var client = new memjs.Client.create();
+var client = new memcache.Client(cfg.memcache.port, cfg.memcache.host);
+
+client.on('connect', function(){});
+
+client.on('close', function(){});
+
+client.on('timeout', function(){console.log('memcache socket timeout');});
+
+client.on('error', function(e){console.log('memcache error', e);});
+
+// connect to the memcache server after subscribing to some or all of these events
+client.connect()
 
 var generate_code = function(callback){
 	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz123456789";

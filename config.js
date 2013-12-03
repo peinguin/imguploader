@@ -1,5 +1,10 @@
 exports.header = 'apikey';
 
+exports.memcache = {
+	host: 'pub-memcache-18622.us-east-1-3.1.ec2.garantiadata.com',
+	port: 18622
+};
+
 exports.facebook = {
 	secret: '3309bf7e09cce0f74b27c6f1dcf66757',
 	appID: '233000996867576'

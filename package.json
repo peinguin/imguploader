@@ -6,6 +6,6 @@
 		"orm": "*",
 		"pg": "*",
 		"swagger-node-express": "*",
-		"memjs": "*"
+		"memcache": "*"
 	}
 }
