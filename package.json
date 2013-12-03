@@ -6,6 +6,7 @@
 		"orm": "*",
 		"pg": "*",
 		"swagger-node-express": "*",
-		"memcache": "*"
+		"memcache": "*",
+		"facebook-node-sdk": "*"
 	}
 }
