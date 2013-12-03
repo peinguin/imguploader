@@ -1,29 +1,3 @@
-var get = {
-	'spec': {
-		"description" : "Get tag",
-		"path" : "/tags.{format}/{id}",
-		"notes" : "Get tag",
-		"summary" : "Get tag by Id",
-		"method": "GET",
-		"params" : [
-			{
-				"paramType": "path",
-	            "name": "id",
-	            "description": "Tag Id",
-	            "dataType": "int",
-	            "required": true,
-	            "allowMultiple": false
-			}
-		],
-		"responseClass" : "Tag",
-		"errorResponses" : [],
-		"nickname" : "getTag"
-	},
-	'action': function (req,res) {
-		
-	}
-};
-
 var remove = {
 	'spec': {
 		"description" : "Remove tag",

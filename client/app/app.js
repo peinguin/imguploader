@@ -34,7 +34,7 @@ define(
         App.addInitializer(function(options){
             mainLayout = new MainLayout;
             App.mainView.show(mainLayout);
-            var headerView = new HeaderView;
+            var headerView = new HeaderView();
             headerView.App = App;
             mainLayout.header.show(headerView);
 

@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS tags CASCADE;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   email character varying(255) NOT NULL,
-  password character varying(255) NOT NULL,
+  password character varying(255) NULL,
   facebook INTEGER DEFAULT null
 );
 
@@ -13,7 +13,8 @@ CREATE TABLE images (
   id SERIAL PRIMARY KEY NOT NULL,
   url character varying(255) NOT NULL,
   user_id INTEGER NOT NULL references users(id),
-  datetime timestamp with time zone DEFAULT current_timestamp
+  datetime timestamp with time zone DEFAULT current_timestamp,
+  caption character varying(255) NULL
 );
 CREATE TABLE tags (
   id SERIAL PRIMARY KEY NOT NULL  UNIQUE ,

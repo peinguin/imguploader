@@ -1,0 +1,9 @@
+<div class="uploader">
+	<h1>You can drop images on any place on page</h1>
+	<input id="fileupload" type="file" name="files[]" class="btn btn-success" multiple>
+	<div id="progress">
+	    <div class="bar" style="width: 0%;"></div>
+	</div>
+	<div class="status"></div>
+</div>
+<div class="images"></div>

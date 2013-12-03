@@ -11,8 +11,8 @@ requirejs.config({
         bootstrap: 'bootstrap/js/bootstrap.min',
 
         text: 'backbone/plugins/text',
-        css: 'backbone/plugins/css',
-        normalize: 'backbone/plugins/normalize'
+
+        'jquery.ui.widget': 'jQuery-File-Upload-9.5.0/js/vendor/jquery.ui.widget'
     },
     shim: {
     	jquery : {

@@ -1,0 +1,7 @@
+<a class="one-image" href="#image/<%= id %>">
+	<span class="title">
+		<%= caption %>
+	</span>
+	<img src="<%= url %>" class="img-thumbnail" />
+	<div class="tags"></div>
+</a>

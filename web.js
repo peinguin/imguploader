@@ -8,7 +8,10 @@ var express = require("express"),
 
 var app = express();
 
-app.use(express.bodyParser());
+app.use(express.bodyParser({
+	keepExtensions: true,
+	uploadDir: "/tmp"
+}));
 
 auth.init(app);
 app.use(auth_filter);

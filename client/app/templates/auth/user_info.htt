@@ -1,9 +1,5 @@
-<ul class="nav navbar-nav navbar-right">
-  <li class="dropdown">
-    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= email %> <b class="caret"></b></a>
-    <ul role="menu" class="dropdown-menu">
-      <li><a href="#profile">Profile</a></li>
-      <li><a href="#logout">Logout</a></li>
-    </ul>
-  </li>
-</ul>
+<div class="btn-group pull-right loggedinmenu">
+	<a class="btn btn-danger" type="button" href="#upload">Upload</a>
+	<a class="btn btn-success" type="submit" href="#profile">Profile</a>
+	<a class="btn btn-primary" type="button" href="#logout">Logout</a>
+</div>

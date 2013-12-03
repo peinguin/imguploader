@@ -8,6 +8,6 @@
   <div class="btn-group">
 	  <button class="btn btn-success" type="submit">Sign in</button>
 	  <button class="btn btn-primary" id="facebook" type="button">Facebook</button>
-	  <button class="btn btn-info" id="register" type="button">Register</button>
+	  <a class="btn btn-info" href="#register" type="button">Register</a>
 	</div>
 </form>

@@ -26,10 +26,9 @@ exports.init = function (app) {
 		    );
 		    var Images = db.define("images",
 			    {
-			        id          : Number,
 			        url         : String,
 			        user_id     : String,
-			        datetime    : Date
+			        caption     : String
 			    },{
 			    	id: "id",
 			    	autoFetch: false
@@ -37,7 +36,6 @@ exports.init = function (app) {
 		    );
 		    var Tags = db.define("tags",
 			    {
-			        id          : Number,
 			        name        : String,
 			        image_id    : String
 			    },{

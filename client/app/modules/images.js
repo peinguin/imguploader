@@ -5,11 +5,8 @@ define(
 		'app/views/images/images',
 		'app/collections/images',
 		'app/models/image',
-		'app/views/images/image_full',
-		'app/views/images/image_not_found',
-		'app/views/spinner',
 		'app/views/images/search',
-		'app/models/tag',
+		'app/views/images/upload'
 	],
 	function (
 		Marionette,
@@ -17,58 +14,42 @@ define(
 		MainView,
 		ImagesCollection,
 		ImageModel,
-		ImageFullView,
-		ImageNotFoundView,
-		SpinnerView,
 		SearchView,
-		TagModel
+		UploadView
 	) {
 		App.module("Images", function(MainModule){
 
 			var ImagesController = Marionette.Controller.extend(new function(){
 				return {
 					main: function(){
-						App.mainView.currentView.header.currentView.setHeader('Images');
-
-						var imagesCollection = new ImagesCollection;
-
-						var spinnerView = new SpinnerView();
-						spinnerView.render();
-						imagesCollection.fetch({
-							error: function(){
-								console.log('error');
-							},
-							success: function(collection){
-								var mainView = new MainView;
-								mainView.collection = imagesCollection;
-								App.mainView.currentView.content.show(mainView);
-								spinnerView.remove();
-							}
-						})
+						var mainView = new MainView;
+						mainView.collection = new ImagesCollection;
+						App.mainView.currentView.content.show(mainView);
 					},
-					image: function(id){
-						var conferenceModel = new ConferenceModel;
-						conferenceModel.set('id', id);
-						conferenceModel.fetch({
-							error: function(){
-								var conferenceNotFoundView = new ConferenceNotFoundView;
-								App.mainView.currentView.content.show(conferenceNotFoundView);
-							},
-							success: function(conference){
-								var conferenceFullView = new ConferenceFullView;
-								conferenceFullView.model = conference;
-								App.mainView.currentView.content.show(conferenceFullView);
-							}
-						});
+					upload: function(id){
+						var uploadView = new UploadView({collection: new ImagesCollection});
+						App.mainView.currentView.content.show(uploadView);
+					},
+					search: function(phrase){
+						var search_filed = App.mainView.currentView.header.currentView.search.$el.find('[type=text]');
+						if(search_filed.val() != phrase){
+							search_filed.val(phrase);
+						}
+
+						var mainView = new MainView;
+						mainView.collection = new ImagesCollection();
+						mainView.collection.search = phrase;
+						App.mainView.currentView.content.show(mainView);
 					}
 				}
 			});
 
 			var MainRouter = Backbone.Marionette.AppRouter.extend({
 				appRoutes: {
-					"image/:id": "image",
 					"images": "main",
-					"": "main"
+					"": "main",
+					"upload": "upload",
+					"search/:phrase": "search"
 				},
 				controller: new ImagesController
 			});

@@ -21,10 +21,6 @@ define(
 			facebook: function(e){
 				e.preventDefault();
 				this.model.facebook();
-			},
-			register: function(e){
-				e.preventDefault();
-				(new Backbone.Router).navigate("#register", {trigger: true, replace: true});
 			}
 		});
 

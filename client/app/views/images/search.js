@@ -18,7 +18,7 @@ define(
 			},
 			search: function(e){
 				e.preventDefault();
-				alert('Not implemented');
+				(new Backbone.Router).navigate("#search/"+encodeURIComponent(this.$el.find('[type=text]').val()), {trigger: true, replace: true})
 			}
 		});
 

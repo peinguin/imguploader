@@ -8,6 +8,9 @@ var restricted = {
 	],
 	'DELETE': [
 		/^\/auth(\.json)?$/
+	],
+	'POST': [
+		/^\/images(\.json)?$/
 	]
 };
 

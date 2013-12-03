@@ -19,3 +19,8 @@ if(process.env.HEROKU_POSTGRESQL_OLIVE_URL){
 }
 
 exports.basePath = 'http://imguploader.herokuapp.com/';
+
+exports.parsecom = {
+	'AppID':'N7sjuzD6D04MY4MQeG0n1wvQNEoRhP4Qqok3fzE9',
+	'ApiKEY':'0SSBb7lBjB2b3WqDI8fCn2T5iXZWK4jjSgYtMcuy'
+}

@@ -22,3 +22,32 @@ body{
 #mainView{
     min-height: 100%;
 }
+
+.loggedinmenu{
+    margin-top: 10px;
+    float: right;
+}
+.bar {
+    height: 18px;
+    background: green;
+}
+.uploader h1{
+    text-align: center;
+}
+.uploader input{
+    margin: 10px auto;
+}
+.one-image{
+    max-width: 480px; 
+    display: block;
+    margin: 10px auto;
+}
+.one-image img{
+    width: 100%;
+}
+.one-image .title{
+    display:block;
+    margin-bottom: 20px;
+    height: 20px; 
+    text-align: center;
+}
