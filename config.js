@@ -6,7 +6,10 @@ exports.facebook = {
 };
 
 exports.listen = process.env.PORT || 5000;
-console.log(DATABASE_URL)
-exports.db = process.env.DATABASE_URL || 'pg://lveutcjeuydedd:CUHx571cS0jr6PESlTk-Uj1oFd@localhost:5432/dchtsmvsngop0o';
 
+if(process.env.DATABASE_URL){
+	exports.db = 'pg://lveutcjeuydedd:CUHx571cS0jr6PESlTk-Uj1oFd@ec2-54-246-101-204.eu-west-1.compute.amazonaws.com:5432/dchtsmvsngop0o';
+}else{
+	exports.db = 'pg://lveutcjeuydedd:CUHx571cS0jr6PESlTk-Uj1oFd@localhost:5432/dchtsmvsngop0o';
+}
 exports.basePath = 'http://imguploader.herokuapp.com/';
