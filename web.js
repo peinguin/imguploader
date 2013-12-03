@@ -12,7 +12,7 @@ app.use(express.bodyParser());
 
 auth.init(app);
 app.use(auth_filter);
-//orm.init(app);
+orm.init(app);
 swagger(app);
 static_files(app);
 
