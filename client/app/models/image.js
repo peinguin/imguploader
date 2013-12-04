@@ -9,7 +9,7 @@ define(
 	) {
 		var ImageModel = Backbone.Model.extend({
 			urlRoot: cfg.baseUrl + 'images.json',
-			id: 'id'
+			idAttribute: 'id'
 		});
 
 		return ImageModel;

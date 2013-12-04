@@ -85,6 +85,49 @@ body{
     left: 15px;
     font-size: 20px;
 }
+.one-image .tags{
+    display: none;
+}
+.one-image .exists .tag{
+    color: #fff;
+    background-color: #000099;
+    margin: 0 5px 0 0;
+    height: 20px;
+    border-radius: 12px;
+    line-height: 12px;
+    font-size:12px;
+    padding: 4px;
+    display: inline-block;
+}
+.one-image .exists .tag input{
+    background: transparent;
+    border: none;
+    color: #fff;
+    vertical-align: top;
+    position: relative;
+    top: -2px;
+}
+.one-image .exists .tag input:disabled{
+    background-color: #444444;
+    color: #DDDDDD;
+}
+.one-image .exists .tag button{
+    height: 13px;
+    width: 13px;
+    vertical-align: top;
+    background: #f00;
+    border-radius: 7px;
+    border: none;
+    line-height: 12px;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    font-weight: 900;
+    font-size: 11px;
+}
+.one-image .new_tag{
+    margin-top: 20px;
+}
 .one-image:hover .tags{
     display: block;
 }

@@ -1,6 +1,14 @@
 var cfg = require('../config');
 var Kaiseki = require('kaiseki');
 
+var clone = function(a){
+	var new_obj = {};
+	for(var i in a){
+		new_obj[i] = a[i]
+	}
+	return new_obj;
+}
+
 var get = {
 	'spec': {
 		"description" : "Get image",
@@ -32,7 +40,19 @@ var get = {
 				res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
 			}else{
 				if(image){
-					res.send(200, JSON.stringify(image));
+
+					image = clone(image);
+					req.db.models.tags.find({image_id: image.id}, function(err, tags){
+						if(err){
+							res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+						}else{
+							image.tags = [];
+							for(var i in tags){
+								image.tags.push(tags[i].toJSON);
+							}
+							res.send(200, JSON.stringify(image));
+						}
+					});
 				}else{
 					throw swagger.errors.notFound('image');
 				}
@@ -120,7 +140,31 @@ var list = {
 			if(err){
 				res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
 			}else{
-				res.send(200, JSON.stringify(images));
+
+				var len = images.length;
+				var processed = 0;
+
+				var check = function(){
+					if(processed == len){
+						res.send(200, JSON.stringify(images));
+					}
+				}
+
+				for(var j in images){
+					images[j] = clone(images[j]);
+					req.db.models.tags.find({image_id: images[j].id}, function(err, tags){
+						if(err){
+							res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+						}else{
+							images[j].tags = [];
+							for(var i in tags){
+								images[j].tags.push(clone(tags[i]));
+							}
+							processed++;
+							check();
+						}
+					});
+				}
 			}
 		});
 	}
@@ -151,6 +195,10 @@ var remove = {
 		if (!req.params.id) {
 	      throw swagger.errors.invalid('id'); }
 	    var id = parseInt(req.params.id);
+
+	    if(!id){
+	    	res.send(401);
+	    }
 
 		req.db.models.images.get(id, function(err, image){
 			if(err){

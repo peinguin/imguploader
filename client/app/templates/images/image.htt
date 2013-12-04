@@ -9,4 +9,11 @@
 	<span class="remove">X</span>
 <% } %>
 <img src="<%= url %>" class="img-thumbnail" />
-<div class="tags"></div>
+<div class="tags">
+	<div class="exists"></div>
+	<% if(isOwner){ %>
+		<div class="tag new_tag">
+			<input type="text" class="tag" /><button class="btn btn-success">+</button>
+		</div>
+	<% } %>
+</div>

@@ -1,0 +1,5 @@
+#<% if(isOwner){ %>
+	<input type="text" name="newtag" value="<%= name %>" /><button class="add_tag btn btn-danger">X</button>
+<% } else{ %>
+	<%= name %>
+<% } %>
