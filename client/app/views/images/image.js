@@ -136,9 +136,11 @@ define(
 			toggle: function(e){
 				e.preventDefault();
 				var view = this;
-				if(view.$el.hasClass('active')){
-					view.$el.removeClass('active');
-				}else{
+
+				var is_active = view.$el.hasClass('active');
+				var all_active = view.$el.parent().find('.active').removeClass('active');
+
+				if(!is_active){
 					view.$el.addClass('active');
 				}
 			},

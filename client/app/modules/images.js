@@ -29,7 +29,7 @@ define(
 						var uploadView = new UploadView({collection: new ImagesCollection});
 						App.mainView.currentView.content.show(uploadView);
 					},
-					search: function(phrase){console.log(phrase)
+					search: function(phrase){
 						var search_filed = App.mainView.currentView.header.currentView.search.$el.find('[type=text]');
 						if(search_filed.val() != phrase){
 							search_filed.val(phrase);

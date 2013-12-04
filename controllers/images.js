@@ -142,28 +142,33 @@ var list = {
 			}else{
 
 				var len = images.length;
-				var processed = 0;
 
-				var check = function(){
-					if(processed == len){
-						res.send(200, JSON.stringify(images));
-					}
-				}
+				if(len > 0){
+					var processed = 0;
 
-				for(var j in images){
-					images[j] = clone(images[j]);
-					req.db.models.tags.find({image_id: images[j].id}, function(err, tags){
-						if(err){
-							res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
-						}else{
-							images[j].tags = [];
-							for(var i in tags){
-								images[j].tags.push(clone(tags[i]));
-							}
-							processed++;
-							check();
+					var check = function(){
+						if(processed == len){
+							res.send(200, JSON.stringify(images));
 						}
-					});
+					}
+
+					for(var j in images){
+						images[j] = clone(images[j]);
+						req.db.models.tags.find({image_id: images[j].id}, function(err, tags){
+							if(err){
+								res.send(500, JSON.stringify({code: 500, header: 'Internal Server Error', message: JSON.stringify(err)}));
+							}else{
+								images[j].tags = [];
+								for(var i in tags){
+									images[j].tags.push(clone(tags[i]));
+								}
+								processed++;
+								check();
+							}
+						});
+					}
+				}else{
+					res.send(200, JSON.stringify([]));
 				}
 			}
 		});
