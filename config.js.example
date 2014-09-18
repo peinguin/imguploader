@@ -1,0 +1,26 @@
+exports.header = 'apikey';
+
+exports.memcache = {
+	host: 'localhost',
+	port: 0
+};
+
+exports.facebook = {
+	secret: '',
+	appID: ''
+};
+
+exports.listen = process.env.PORT || 5000;
+
+if(process.env.HEROKU_POSTGRESQL_OLIVE_URL){
+	exports.db = process.env.HEROKU_POSTGRESQL_OLIVE_URL.replace("postgres://", "pg://");
+}else{
+	exports.db = 'pg://localhost';
+}
+
+exports.basePath = 'http://imguploader.herokuapp.com/';
+
+exports.parsecom = {
+	'AppID':'',
+	'ApiKEY':''
+}
